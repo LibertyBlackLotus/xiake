@@ -5,6 +5,9 @@
 /**
  * @param {Egg.EggAppInfo} appInfo app info
  */
+const os = require('os');
+const path = require('path');
+
 module.exports = appInfo => {
 	/**
 	 * built-in config
@@ -14,6 +17,9 @@ module.exports = appInfo => {
 
 	// use for cookie sign key, should change to your own and keep security
 	config.keys = appInfo.name + '_1585039010443_829';
+
+	config.baseURL = 'http://192.168.8.133:2501/';
+	config.imgURL = 'http://192.168.8.133:2501/public';
 
 	// add your middleware config here
 	config.middleware = [
@@ -37,6 +43,14 @@ module.exports = appInfo => {
 	config.jwt = {
 		secret: 'lin'
 	};
+
+	//多媒体文件设置
+	config.multipart = {
+		mode: 'stream',
+		// fieldSize: '200000kb',
+	};
+
+	config.publicDir = path.resolve('app/public');
 
 	//csrf安全设置
 	config.security = {

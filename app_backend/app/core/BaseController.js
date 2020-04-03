@@ -21,27 +21,18 @@ class BaseController extends Controller {
 	 * 创建
 	 * @returns {Promise.<void>}
 	 */
-	async create(unique = {}){
+	async create(){
 		const { ctx } = this;
-		let result = await this.service.findOne(unique);
-		if(result){
-			throw new ExistError();
-		}
 		let data = ctx.request.body;
 		if(!data){
 			throw new InvalidQueryError();
-		}
-		if(customData){
-			data = customData;
 		}
 		const item = await this.service.create(data);
 		if(!item){
 			ctx.status = '500';
 			ctx.message = '保存失败';
 		}else{
-			ctx.body = {
-				item
-			};
+			ctx.body = item;
 		}
 	}
 
@@ -59,9 +50,7 @@ class BaseController extends Controller {
 		if(!item){
 			throw new NotFoundError();
 		}
-		ctx.body = {
-			item
-		};
+		ctx.body = item;
 	}
 
 	/**
@@ -79,9 +68,7 @@ class BaseController extends Controller {
 		if(!item){
 			throw new NotFoundError();
 		}
-		ctx.body = {
-			item
-		};
+		ctx.body = item;
 	}
 
 	/**
@@ -98,9 +85,7 @@ class BaseController extends Controller {
 		if(!item){
 			throw new NotFoundError();
 		}
-		ctx.body = {
-			item
-		};
+		ctx.body = item;
 	}
 }
 module.exports = BaseController;

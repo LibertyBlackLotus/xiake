@@ -18,7 +18,7 @@ class UploadController extends Controller {
 		const date = new Date();
 		const year = date.getFullYear();
 		const month = (Array(2).join(0) + (date.getMonth() + 1)).slice(-2);
-		const uploadPath = `/img/${year}/${month}`;
+		const uploadPath = `/sword/${year}/${month}`;
 		const uploadPathAb = path.join(this.app.config.publicDir, uploadPath);
 		utils.mkdirsSync(uploadPathAb);
 
